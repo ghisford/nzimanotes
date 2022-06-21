@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "37340488884",
+    "project_id": "morenotesbynzima",
+    "storage_bucket": "morenotesbynzima.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37340488884:android:b6d3b4e8e1a294be4423e1",
+        "android_client_info": {
+          "package_name": "com.example.notesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37340488884-9ervs8hpctho260aijg8keubo0ldggcn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNHsNkLUcD-pkoM8Lx7_OEvSSgwY_S4bY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37340488884-9ervs8hpctho260aijg8keubo0ldggcn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
