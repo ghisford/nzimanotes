@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:notesapp/firebase_options.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -31,60 +29,51 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('login'),
-      ),
-      body: FutureBuilder(
-        future: Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform,
-        ),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.done:
-              return Column(
-                children: [
-                  TextField(
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(hintText: 'enter email'),
-                    controller: _email,
-                  ),
-                  TextField(
-                    obscureText: true,
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    decoration:
-                        const InputDecoration(hintText: 'enter password'),
-                    controller: _password,
-                  ),
-                  TextButton(
-                    onPressed: () async {
-                      final email = _email.text;
-                      final password = _password.text;
-                      try {
-                        final UserCredential = await FirebaseAuth.instance
-                            .signInWithEmailAndPassword(
-                          email: email,
-                          password: password,
-                        );
-                      } on FirebaseAuthException catch (e) {
-                        if (e.code == "user-not-found") {
-                          print("oops bruh! no such user");
-                        } else {
-                          print('wrong password ');
-                         
-                        }
-                      }
-                    },
-                    child: const Text('login'),
-                  ),
-                ],
-              );
-            default:
-              return const Center(child: Text('loading...'));
-          }
-        },
+      appBar: AppBar(title: const Text("login")),
+      body: Column(
+        children: [
+          TextField(
+            enableSuggestions: false,
+            autocorrect: false,
+            keyboardType: TextInputType.emailAddress,
+            decoration: const InputDecoration(hintText: 'enter email'),
+            controller: _email,
+          ),
+          TextField(
+            obscureText: true,
+            enableSuggestions: false,
+            autocorrect: false,
+            decoration: const InputDecoration(hintText: 'enter password'),
+            controller: _password,
+          ),
+          TextButton(
+            onPressed: () async {
+              final email = _email.text;
+              final password = _password.text;
+              try {
+                final UserCredential =
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                  email: email,
+                  password: password,
+                );
+              } on FirebaseAuthException catch (e) {
+                if (e.code == "user-not-found") {
+                  print("oops bruh! no such user");
+                } else {
+                  print('wrong password ');
+                }
+              }
+            },
+            child: const Text('login'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil('/register/', (route) => false);
+            },
+            child: const Text("not registered yet? register here"),
+          ),
+        ],
       ),
     );
   }
